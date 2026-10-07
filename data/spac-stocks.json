@@ -1,5 +1,18 @@
 [
   {
+    "name": "코리아스팩 14호",
+    "code": "477530",
+    "marketCode": "477530",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "한국거래소 상장 SPAC",
+    "announcementDate": "2024-03-15",
+    "mainShareholder": "코리아스팩",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr",
+    "listingDate": "2024-03-15"
+  },
+  {
     "name": "하나금융스팩 14호",
     "code": "HF14",
     "status": "상장",
@@ -281,17 +294,6 @@
     "sector": "금융/투자",
     "description": "한국거래소 상장 SPAC",
     "announcementDate": "2024-05-08",
-    "mainShareholder": "코리아스팩",
-    "newsLink": "https://kind.krx.co.kr",
-    "filingLink": "https://kind.krx.co.kr"
-  },
-  {
-    "name": "코리아스팩 14호",
-    "code": "477530",
-    "status": "상장",
-    "sector": "금융/투자",
-    "description": "한국거래소 상장 SPAC",
-    "announcementDate": "2024-03-15",
     "mainShareholder": "코리아스팩",
     "newsLink": "https://kind.krx.co.kr",
     "filingLink": "https://kind.krx.co.kr"
