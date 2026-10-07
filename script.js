@@ -11,8 +11,8 @@ async function loadStocks() {
         allStocks = allStocks.map(stock => ({
             ...stock,
             listingDate: stock.listingDate || stock.announcementDate || '미공개',
-            previousClose: '조회 중...',
-            previousVolume: '조회 중...'
+            previousClose: '미공개',
+            previousVolume: '미공개'
         }));
 
         filteredStocks = allStocks;
@@ -27,6 +27,12 @@ async function loadStocks() {
 async function hydrateMarketData(stockList) {
     for (const stock of stockList) {
         const marketCode = resolveMarketCode(stock);
+        if (!marketCode) {
+            stock.previousClose = '미공개';
+            stock.previousVolume = '미공개';
+            continue;
+        }
+
         const marketInfo = await fetchMarketData(marketCode);
         stock.previousClose = marketInfo.previousClose;
         stock.previousVolume = marketInfo.previousVolume;
@@ -34,51 +40,32 @@ async function hydrateMarketData(stockList) {
 }
 
 async function fetchMarketData(code) {
-    if (!code) {
-        return {
-            previousClose: '미공개',
-            previousVolume: '미공개'
-        };
-    }
-
     try {
         const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(code)}?range=5d&interval=1d`;
         const response = await fetch(url, {
             method: 'GET',
-            headers: {
-                'Accept': 'application/json'
-            },
+            headers: { 'Accept': 'application/json' },
             cache: 'no-store'
         });
 
         if (!response.ok) {
-            return {
-                previousClose: '미공개',
-                previousVolume: '미공개'
-            };
+            return { previousClose: '미공개', previousVolume: '미공개' };
         }
 
         const data = await response.json();
         const result = data?.chart?.result?.[0];
         const quote = result?.meta;
-        const previousClose = quote?.previousClose;
-        const quoteVolume = result?.indicators?.quote?.[0]?.volume;
-        const latestVolume = Array.isArray(quoteVolume) ? quoteVolume[quoteVolume.length - 2] : null;
+        const prev = quote?.previousClose;
+        const volumeSeries = result?.indicators?.quote?.[0]?.volume;
+        const prevVolume = Array.isArray(volumeSeries) ? volumeSeries[volumeSeries.length - 2] : null;
 
         return {
-            previousClose: typeof previousClose === 'number'
-                ? `${Number(previousClose).toLocaleString('ko-KR')}원`
-                : '미공개',
-            previousVolume: typeof latestVolume === 'number'
-                ? Number(latestVolume).toLocaleString('ko-KR')
-                : '미공개'
+            previousClose: typeof prev === 'number' ? `${Number(prev).toLocaleString('ko-KR')}원` : '미공개',
+            previousVolume: typeof prevVolume === 'number' ? Number(prevVolume).toLocaleString('ko-KR') : '미공개'
         };
     } catch (error) {
         console.warn(`시장 데이터 조회 실패: ${code}`, error);
-        return {
-            previousClose: '미공개',
-            previousVolume: '미공개'
-        };
+        return { previousClose: '미공개', previousVolume: '미공개' };
     }
 }
 
