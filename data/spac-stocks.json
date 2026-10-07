@@ -1,0 +1,68 @@
+[
+  {
+    "name": "한국프로로지스SPAC",
+    "code": "KPRO",
+    "status": "상장",
+    "sector": "부동산/물류",
+    "description": "국내 물류 부동산 전문 기업 SPAC 프로젝트",
+    "announcementDate": "2023-06-15",
+    "mainShareholder": "프로로지스",
+    "newsLink": "#",
+    "filingLink": "#"
+  },
+  {
+    "name": "SK에코플랜트SPAC",
+    "code": "SKEP",
+    "status": "상장예정",
+    "sector": "환경/에너지",
+    "description": "SK그룹의 환경 솔루션 기업 SPAC 프로젝트",
+    "announcementDate": "2023-07-20",
+    "mainShareholder": "SK그룹",
+    "newsLink": "#",
+    "filingLink": "#"
+  },
+  {
+    "name": "현대차SPAC",
+    "code": "HCSP",
+    "status": "검토중",
+    "sector": "자동차/완성차",
+    "description": "현대자동차 관련 신규 사업 SPAC 프로젝트",
+    "announcementDate": "2023-08-01",
+    "mainShareholder": "현대자동차",
+    "newsLink": "#",
+    "filingLink": "#"
+  },
+  {
+    "name": "LG에너지SPAC",
+    "code": "LGES",
+    "status": "상장",
+    "sector": "배터리/에너지",
+    "description": "LG에너지솔루션 관련 신사업 SPAC",
+    "announcementDate": "2023-05-10",
+    "mainShareholder": "LG그룹",
+    "newsLink": "#",
+    "filingLink": "#"
+  },
+  {
+    "name": "삼성디지털SPAC",
+    "code": "SDSP",
+    "status": "상장예정",
+    "sector": "반도체/디지털",
+    "description": "삼성 계열의 디지털 신사업 SPAC 프로젝트",
+    "announcementDate": "2023-09-05",
+    "mainShareholder": "삼성그룹",
+    "newsLink": "#",
+    "filingLink": "#"
+  },
+  {
+    "name": "네이버테크SPAC",
+    "code": "NTVR",
+    "status": "검토중",
+    "sector": "기술/IT",
+    "description": "네이버의 신기술 사업 SPAC",
+    "announcementDate": "2023-08-15",
+    "mainShareholder": "네이버",
+    "newsLink": "#",
+    "filingLink": "#"
+  }
+]
