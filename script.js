@@ -8,12 +8,90 @@ async function loadStocks() {
     try {
         const response = await fetch('data/spac-stocks.json');
         allStocks = await response.json();
+
+        allStocks = allStocks.map(stock => ({
+            ...stock,
+            listingDate: stock.listingDate || stock.announcementDate || '미공개',
+            currentPrice: stock.currentPrice || '가격 미제공'
+        }));
+
         filteredStocks = allStocks;
+        await hydrateCurrentPrices(filteredStocks);
         renderStocks();
         updateStats();
     } catch (error) {
         console.error('데이터 로드 실패:', error);
     }
+}
+
+async function hydrateCurrentPrices(stockList) {
+    const symbolsToFetch = stockList
+        .map(stock => ({
+            id: stock.code,
+            code: stock.code,
+            name: stock.name
+        }))
+        .filter(item => item.code && item.code.length > 0);
+
+    for (const item of symbolsToFetch) {
+        const price = await fetchCurrentPrice(item.code, item.name);
+        const target = allStocks.find(stock => stock.code === item.code);
+        if (target) {
+            target.currentPrice = price;
+        }
+    }
+}
+
+async function fetchCurrentPrice(code, name = '') {
+    const normalized = normalizeMarketCode(code);
+    if (!normalized) {
+        return '가격 미제공';
+    }
+
+    try {
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(normalized)}?range=1d&interval=1m`;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+            cache: 'no-store'
+        });
+
+        if (!response.ok) {
+            return '가격 미제공';
+        }
+
+        const data = await response.json();
+        const price = data?.chart?.result?.[0]?.meta?.regularMarketPrice;
+
+        if (typeof price === 'number') {
+            return `${Number(price).toLocaleString('ko-KR')}원`;
+        }
+
+        return '가격 미제공';
+    } catch (error) {
+        console.warn(`가격 조회 실패: ${code} (${name})`, error);
+        return '가격 미제공';
+    }
+}
+
+function normalizeMarketCode(code) {
+    const cleaned = String(code || '').trim().toUpperCase();
+    if (!cleaned) return null;
+
+    // 실제 KRX 종목코드: 6자리 숫자 -> .KS 로 연결
+    if (/^\d{6}$/.test(cleaned)) {
+        return `${cleaned}.KS`;
+    }
+
+    // 이미 심볼 형식이면 그대로 사용
+    if (cleaned.includes('.')) {
+        return cleaned;
+    }
+
+    // 숫자가 아닌 코드들은 공식 시장 심볼이 아니므로 조회 불가
+    return null;
 }
 
 // 주식 카드 렌더링
