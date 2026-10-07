@@ -12,11 +12,11 @@
         <header class="header">
             <div class="header-content">
                 <h1 class="logo">SpacToken</h1>
-                <p class="subtitle">국내 SPAC 관련주 정보 플랫폼</p>
+                <p class="subtitle">국내 SPAC 상장 종목 정보</p>
             </div>
         </header>
 
-        <!-- 검색 & 필터 섹션 -->
+        <!-- 검색 섹션 -->
         <section class="search-section">
             <div class="search-container">
                 <input 
@@ -31,28 +31,17 @@
                     <path d="m21 21-4.35-4.35"></path>
                 </svg>
             </div>
-            
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterByStatus('all')">전체</button>
-                <button class="filter-btn" onclick="filterByStatus('상장')">상장</button>
-                <button class="filter-btn" onclick="filterByStatus('예정')">상장예정</button>
-                <button class="filter-btn" onclick="filterByStatus('검토중')">검토중</button>
-            </div>
         </section>
 
         <!-- 통계 카드 -->
         <section class="stats-section">
             <div class="stat-card">
                 <div class="stat-number" id="totalCount">0</div>
-                <div class="stat-label">전체 기업</div>
+                <div class="stat-label">전체 상장 종목</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number" id="listedCount">0</div>
-                <div class="stat-label">상장 기업</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="pendingCount">0</div>
-                <div class="stat-label">예정 기업</div>
+                <div class="stat-label">상장 종목</div>
             </div>
         </section>
 
