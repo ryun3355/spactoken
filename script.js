@@ -26,15 +26,15 @@ async function loadStocks() {
 
 async function hydrateMarketData(stockList) {
     for (const stock of stockList) {
-        const marketInfo = await fetchMarketData(stock.code);
+        const marketCode = resolveMarketCode(stock);
+        const marketInfo = await fetchMarketData(marketCode);
         stock.previousClose = marketInfo.previousClose;
         stock.previousVolume = marketInfo.previousVolume;
     }
 }
 
 async function fetchMarketData(code) {
-    const normalized = normalizeMarketCode(code);
-    if (!normalized) {
+    if (!code) {
         return {
             previousClose: '미공개',
             previousVolume: '미공개'
@@ -42,7 +42,7 @@ async function fetchMarketData(code) {
     }
 
     try {
-        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(normalized)}?range=5d&interval=1d`;
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(code)}?range=5d&interval=1d`;
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -62,14 +62,15 @@ async function fetchMarketData(code) {
         const result = data?.chart?.result?.[0];
         const quote = result?.meta;
         const previousClose = quote?.previousClose;
-        const volume = result?.indicators?.quote?.[0]?.volume?.[result.indicators.quote[0].volume.length - 2];
+        const quoteVolume = result?.indicators?.quote?.[0]?.volume;
+        const latestVolume = Array.isArray(quoteVolume) ? quoteVolume[quoteVolume.length - 2] : null;
 
         return {
             previousClose: typeof previousClose === 'number'
                 ? `${Number(previousClose).toLocaleString('ko-KR')}원`
                 : '미공개',
-            previousVolume: typeof volume === 'number'
-                ? Number(volume).toLocaleString('ko-KR')
+            previousVolume: typeof latestVolume === 'number'
+                ? Number(latestVolume).toLocaleString('ko-KR')
                 : '미공개'
         };
     } catch (error) {
@@ -81,16 +82,19 @@ async function fetchMarketData(code) {
     }
 }
 
-function normalizeMarketCode(code) {
-    const cleaned = String(code || '').trim().toUpperCase();
-    if (!cleaned) return null;
-
-    if (/^\d{6}$/.test(cleaned)) {
-        return `${cleaned}.KS`;
+function resolveMarketCode(stock) {
+    const marketCode = String(stock?.marketCode || '').trim();
+    if (marketCode && /^\d{6}$/.test(marketCode)) {
+        return `${marketCode}.KS`;
     }
 
-    if (cleaned.includes('.')) {
-        return cleaned;
+    const rawCode = String(stock?.code || '').trim();
+    if (rawCode.includes('.')) {
+        return rawCode.toUpperCase();
+    }
+
+    if (/^\d{6}$/.test(rawCode)) {
+        return `${rawCode}.KS`;
     }
 
     return null;
