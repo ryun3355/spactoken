@@ -1,1 +1,233 @@
-[\n  {\n    \"name\": \"하나금융스팩 14호\",\n    \"code\": \"HF14\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"하나금융투자에서 설립한 기업인수목적회사(SPAC). 14호 시리즈는 금융 및 관련 산업 기업 인수 추진 중\",\n    \"announcementDate\": \"2024-06-15\",\n    \"mainShareholder\": \"하나금융투자\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"하나금융스팩 33호\",\n    \"code\": \"HF33\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"하나금융투자의 최신 SPAC 시리즈. 다양한 산업군의 신규 비즈니스 기회 발굴\",\n    \"announcementDate\": \"2024-08-20\",\n    \"mainShareholder\": \"하나금융투자\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"미래에셋비전스팩 4호\",\n    \"code\": \"MV4\",\n    \"status\": \"상장\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"미래에셋증권의 비전 SPAC 시리즈. 성장성 높은 기업의 인수를 목표로 운영 중\",\n    \"announcementDate\": \"2023-09-10\",\n    \"mainShareholder\": \"미래에셋증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"KB스팩 21호\",\n    \"code\": \"KB21\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"KB투자증권의 SPAC 시리즈. 21호는 기술 및 소비 관련 산업 기업 인수 추진\",\n    \"announcementDate\": \"2024-07-05\",\n    \"mainShareholder\": \"KB투자증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"유안타스팩 8호\",\n    \"code\": \"UT8\",\n    \"status\": \"상장\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"유안타증권의 SPAC 프로젝트. 다양한 산업의 우량 기업 인수 추진\",\n    \"announcementDate\": \"2023-11-15\",\n    \"mainShareholder\": \"유안타증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"신영스팩 5호\",\n    \"code\": \"SY5\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"신영증권의 SPAC 이니셔티브. 신성장 기업의 발굴 및 인수 목표\",\n    \"announcementDate\": \"2024-05-20\",\n    \"mainShareholder\": \"신영증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"교보스팩 10호\",\n    \"code\": \"KB10\",\n    \"status\": \"상장\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"교보증권의 SPAC 프로젝트. 10호는 에너지 및 자원 관련 기업 인수 추진 중\",\n    \"announcementDate\": \"2023-12-01\",\n    \"mainShareholder\": \"교보증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"코리아스팩 12호\",\n    \"code\": \"KS12\",\n    \"status\": \"검토중\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"한국거래소 상장 SPAC 시리즈. 다양한 산업 기업의 인수 검토 중\",\n    \"announcementDate\": \"2024-04-10\",\n    \"mainShareholder\": \"코리아스팩\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"코리아스팩 14호\",\n    \"code\": \"477530\",\n    \"status\": \"상장\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"코리아스팩 14호. 성장성 높은 벤처 및 중소기업의 인수 추진\",\n    \"announcementDate\": \"2024-03-15\",\n    \"mainShareholder\": \"코리아스팩\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"하나머스트 7호스팩\",\n    \"code\": \"HM7\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"하나금융그룹의 머스트(Must) 브랜드 SPAC. 미래 유망 기업 발굴 목표\",\n    \"announcementDate\": \"2024-08-01\",\n    \"mainShareholder\": \"하나금융그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"이베스트스팩 5호\",\n    \"code\": \"IBS5\",\n    \"status\": \"상장\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"이베스트투자증권의 SPAC 시리즈. 기술 및 바이오 기업의 인수 추진\",\n    \"announcementDate\": \"2023-10-20\",\n    \"mainShareholder\": \"이베스트투자증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"IBKS제19호스팩\",\n    \"code\": \"IBKS19\",\n    \"status\": \"상장예정\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"IBK투자증권의 SPAC. 금융 및 IT 융합 기업의 인수 추진\",\n    \"announcementDate\": \"2024-07-15\",\n    \"mainShareholder\": \"IBK투자증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"IBKS제20호스팩\",\n    \"code\": \"IBKS20\",\n    \"status\": \"검토중\",\n    \"sector\": \"금융/투자\",\n    \"description\": \"IBK투자증권의 최신 SPAC. 신규 산업군의 기업 인수 검토 중\",\n    \"announcementDate\": \"2024-09-01\",\n    \"mainShareholder\": \"IBK투자증권\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"현대무벡스\",\n    \"code\": \"HDV\",\n    \"status\": \"상장\",\n    \"sector\": \"자동차/부품\",\n    \"description\": \"현대그룹의 SPAC 상장 사례. 자동차 관련 신기술 기업 인수 추진\",\n    \"announcementDate\": \"2023-08-10\",\n    \"mainShareholder\": \"현대자동차그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"SK스팩 플러스\",\n    \"code\": \"SKSP\",\n    \"status\": \"상장예정\",\n    \"sector\": \"에너지/화학\",\n    \"description\": \"SK그룹의 SPAC 프로젝트. 신재생에너지 및 그린테크 기업 인수 목표\",\n    \"announcementDate\": \"2024-06-05\",\n    \"mainShareholder\": \"SK그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"삼성스팩 이노베이션\",\n    \"code\": \"SSVI\",\n    \"status\": \"검토중\",\n    \"sector\": \"전자/반도체\",\n    \"description\": \"삼성그룹의 SPAC 이니셔티브. 혁신 기술 기업의 인수 추진\",\n    \"announcementDate\": \"2024-07-20\",\n    \"mainShareholder\": \"삼성그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"LG스팩 테크\",\n    \"code\": \"LGST\",\n    \"status\": \"상장\",\n    \"sector\": \"전자/디스플레이\",\n    \"description\": \"LG그룹의 SPAC. 차세대 디스플레이 및 배터리 기술 기업 인수\",\n    \"announcementDate\": \"2023-09-25\",\n    \"mainShareholder\": \"LG그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"롯데스팩 뉴비즈니스\",\n    \"code\": \"LSNB\",\n    \"status\": \"상장예정\",\n    \"sector\": \"유통/소비\",\n    \"description\": \"롯데그룹의 SPAC 프로젝트. 신규 소비 트렌드 기업의 인수 추진\",\n    \"announcementDate\": \"2024-08-15\",\n    \"mainShareholder\": \"롯데그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"CJ스팩 엔터테인먼트\",\n    \"code\": \"CJSE\",\n    \"status\": \"상장\",\n    \"sector\": \"엔터테인먼트/미디어\",\n    \"description\": \"CJ그룹의 SPAC. 콘텐츠 및 미디어 기업의 인수 추진\",\n    \"announcementDate\": \"2024-05-10\",\n    \"mainShareholder\": \"CJ그룹\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"네이버스팩 테크\",\n    \"code\": \"NVST\",\n    \"status\": \"검토중\",\n    \"sector\": \"IT/인터넷\",\n    \"description\": \"네이버의 SPAC 이니셔티브. AI 및 클라우드 기술 기업 인수 추진\",\n    \"announcementDate\": \"2024-06-30\",\n    \"mainShareholder\": \"네이버\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  },\n  {\n    \"name\": \"카카오스팩 플랫폼\",\n    \"code\": \"KKSP\",\n    \"status\": \"상장예정\",\n    \"sector\": \"IT/플랫폼\",\n    \"description\": \"카카오의 SPAC. 플랫폼 이코노미 관련 기업의 인수 목표\",\n    \"announcementDate\": \"2024-07-25\",\n    \"mainShareholder\": \"카카오\",\n    \"newsLink\": \"https://kind.krx.co.kr\",\n    \"filingLink\": \"https://kind.krx.co.kr\"\n  }\n]
+[
+  {
+    "name": "하나금융스팩 14호",
+    "code": "HF14",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "하나금융투자에서 설립한 기업인수목적회사(SPAC). 14호 시리즈는 금융 및 관련 산업 기업 인수 추진 중",
+    "announcementDate": "2024-06-15",
+    "mainShareholder": "하나금융투자",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "하나금융스팩 33호",
+    "code": "HF33",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "하나금융투자의 최신 SPAC 시리즈. 다양한 산업군의 신규 비즈니스 기회 발굴",
+    "announcementDate": "2024-08-20",
+    "mainShareholder": "하나금융투자",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "미래에셋비전스팩 4호",
+    "code": "MV4",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "미래에셋증권의 비전 SPAC 시리즈. 성장성 높은 기업의 인수를 목표로 운영 중",
+    "announcementDate": "2023-09-10",
+    "mainShareholder": "미래에셋증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "KB스팩 21호",
+    "code": "KB21",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "KB투자증권의 SPAC 시리즈. 21호는 기술 및 소비 관련 산업 기업 인수 추진",
+    "announcementDate": "2024-07-05",
+    "mainShareholder": "KB투자증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "유안타스팩 8호",
+    "code": "UT8",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "유안타증권의 SPAC 프로젝트. 다양한 산업의 우량 기업 인수 추진",
+    "announcementDate": "2023-11-15",
+    "mainShareholder": "유안타증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "신영스팩 5호",
+    "code": "SY5",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "신영증권의 SPAC 이니셔티브. 신성장 기업의 발굴 및 인수 목표",
+    "announcementDate": "2024-05-20",
+    "mainShareholder": "신영증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "교보스팩 10호",
+    "code": "KB10",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "교보증권의 SPAC 프로젝트. 10호는 에너지 및 자원 관련 기업 인수 추진 중",
+    "announcementDate": "2023-12-01",
+    "mainShareholder": "교보증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "코리아스팩 12호",
+    "code": "KS12",
+    "status": "검토중",
+    "sector": "금융/투자",
+    "description": "한국거래소 상장 SPAC 시리즈. 다양한 산업 기업의 인수 검토 중",
+    "announcementDate": "2024-04-10",
+    "mainShareholder": "코리아스팩",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "코리아스팩 14호",
+    "code": "477530",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "코리아스팩 14호. 성장성 높은 벤처 및 중소기업의 인수 추진",
+    "announcementDate": "2024-03-15",
+    "mainShareholder": "코리아스팩",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "하나머스트 7호스팩",
+    "code": "HM7",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "하나금융그룹의 머스트(Must) 브랜드 SPAC. 미래 유망 기업 발굴 목표",
+    "announcementDate": "2024-08-01",
+    "mainShareholder": "하나금융그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "이베스트스팩 5호",
+    "code": "IBS5",
+    "status": "상장",
+    "sector": "금융/투자",
+    "description": "이베스트투자증권의 SPAC 시리즈. 기술 및 바이오 기업의 인수 추진",
+    "announcementDate": "2023-10-20",
+    "mainShareholder": "이베스트투자증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "IBKS제19호스팩",
+    "code": "IBKS19",
+    "status": "상장예정",
+    "sector": "금융/투자",
+    "description": "IBK투자증권의 SPAC. 금융 및 IT 융합 기업의 인수 추진",
+    "announcementDate": "2024-07-15",
+    "mainShareholder": "IBK투자증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "IBKS제20호스팩",
+    "code": "IBKS20",
+    "status": "검토중",
+    "sector": "금융/투자",
+    "description": "IBK투자증권의 최신 SPAC. 신규 산업군의 기업 인수 검토 중",
+    "announcementDate": "2024-09-01",
+    "mainShareholder": "IBK투자증권",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "현대무벡스",
+    "code": "HDV",
+    "status": "상장",
+    "sector": "자동차/부품",
+    "description": "현대그룹의 SPAC 상장 사례. 자동차 관련 신기술 기업 인수 추진",
+    "announcementDate": "2023-08-10",
+    "mainShareholder": "현대자동차그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "SK스팩 플러스",
+    "code": "SKSP",
+    "status": "상장예정",
+    "sector": "에너지/화학",
+    "description": "SK그룹의 SPAC 프로젝트. 신재생에너지 및 그린테크 기업 인수 목표",
+    "announcementDate": "2024-06-05",
+    "mainShareholder": "SK그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "삼성스팩 이노베이션",
+    "code": "SSVI",
+    "status": "검토중",
+    "sector": "전자/반도체",
+    "description": "삼성그룹의 SPAC 이니셔티브. 혁신 기술 기업의 인수 추진",
+    "announcementDate": "2024-07-20",
+    "mainShareholder": "삼성그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "LG스팩 테크",
+    "code": "LGST",
+    "status": "상장",
+    "sector": "전자/디스플레이",
+    "description": "LG그룹의 SPAC. 차세대 디스플레이 및 배터리 기술 기업 인수",
+    "announcementDate": "2023-09-25",
+    "mainShareholder": "LG그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "롯데스팩 뉴비즈니스",
+    "code": "LSNB",
+    "status": "상장예정",
+    "sector": "유통/소비",
+    "description": "롯데그룹의 SPAC 프로젝트. 신규 소비 트렌드 기업의 인수 추진",
+    "announcementDate": "2024-08-15",
+    "mainShareholder": "롯데그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "CJ스팩 엔터테인먼트",
+    "code": "CJSE",
+    "status": "상장",
+    "sector": "엔터테인먼트/미디어",
+    "description": "CJ그룹의 SPAC. 콘텐츠 및 미디어 기업의 인수 추진",
+    "announcementDate": "2024-05-10",
+    "mainShareholder": "CJ그룹",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "네이버스팩 테크",
+    "code": "NVST",
+    "status": "검토중",
+    "sector": "IT/인터넷",
+    "description": "네이버의 SPAC 이니셔티브. AI 및 클라우드 기술 기업 인수 추진",
+    "announcementDate": "2024-06-30",
+    "mainShareholder": "네이버",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  },
+  {
+    "name": "카카오스팩 플랫폼",
+    "code": "KKSP",
+    "status": "상장예정",
+    "sector": "IT/플랫폼",
+    "description": "카카오의 SPAC. 플랫폼 이코노미 관련 기업의 인수 목표",
+    "announcementDate": "2024-07-25",
+    "mainShareholder": "카카오",
+    "newsLink": "https://kind.krx.co.kr",
+    "filingLink": "https://kind.krx.co.kr"
+  }
+]
