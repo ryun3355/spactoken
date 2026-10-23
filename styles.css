@@ -145,6 +145,14 @@ body {
 
 .stock-header {
     margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.stock-header .stock-name {
+    flex-basis: 100%;
 }
 
 .stock-name {
@@ -152,6 +160,16 @@ body {
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 8px;
+}
+
+.market-badge {
+    display: inline-block;
+    font-size: 0.8em;
+    color: #c9b6ff;
+    font-weight: 700;
+    background: rgba(118, 75, 162, 0.2);
+    padding: 5px 10px;
+    border-radius: 20px;
 }
 
 .stock-code {
@@ -211,6 +229,89 @@ body {
     font-weight: 600;
 }
 
+.info-value.up {
+    color: #ff6b6b;
+}
+
+.info-value.down {
+    color: #5c9dff;
+}
+
+.controls {
+    max-width: 700px;
+    margin: 15px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.market-filter {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.market-btn {
+    padding: 8px 16px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #b0b0b0;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.market-btn:hover {
+    border-color: #667eea;
+    color: #e0e0e0;
+}
+
+.market-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    color: #ffffff;
+}
+
+.sort-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: #b0b0b0;
+}
+
+.sort-select {
+    padding: 8px 12px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    background: #24243e;
+    color: #e0e0e0;
+    font-size: 1em;
+}
+
+.result-summary {
+    margin-bottom: 12px;
+    color: #8c8c8c;
+    font-size: 0.9em;
+}
+
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    color: #8c8c8c;
+    font-size: 0.8em;
+    line-height: 1.8;
+}
+
+.footer a {
+    color: #8fa2f5;
+}
+
 .no-results {
     text-align: center;
     padding: 60px 20px;
@@ -227,8 +328,27 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .stock-info {
-        grid-template-columns: 1fr;
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats-section {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 14px 8px;
+    }
+
+    .stat-number {
+        font-size: 1em;
+        white-space: nowrap;
+    }
+
+    .stat-label {
+        font-size: 0.75em;
     }
 }
 

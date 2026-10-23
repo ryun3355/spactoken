@@ -1,163 +1,197 @@
-// SPAC 관련주 데이터
+// 데이터는 scripts/update_spac_data.py가 KIND·네이버 증권에서 수집해 자동 생성한다.
+const DATA_URL = 'data/spac-stocks.json';
+const ALL_MARKETS = '전체';
+
 let allStocks = [];
-let filteredStocks = [];
+let selectedMarket = ALL_MARKETS;
 
 // 데이터 로드
 async function loadStocks() {
     try {
-        const response = await fetch('data/spac-stocks.json');
-        allStocks = await response.json();
+        const response = await fetch(DATA_URL, { cache: 'no-cache' });
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        const data = await response.json();
 
-        allStocks = allStocks.map(stock => ({
-            ...stock,
-            listingDate: stock.listingDate || stock.announcementDate || '미공개',
-            previousClose: '미공개',
-            previousVolume: '미공개'
-        }));
-
-        filteredStocks = allStocks;
-        await hydrateMarketData(filteredStocks);
-        renderStocks();
-        updateStats();
+        allStocks = data.stocks || [];
+        renderMarketFilter();
+        renderStats(data);
+        renderUpdatedAt(data);
+        applyFilters();
     } catch (error) {
         console.error('데이터 로드 실패:', error);
+        showStatus('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
     }
 }
 
-async function hydrateMarketData(stockList) {
-    for (const stock of stockList) {
-        const marketCode = resolveMarketCode(stock);
-        if (!marketCode) {
-            stock.previousClose = '미공개';
-            stock.previousVolume = '미공개';
-            continue;
-        }
-
-        const marketInfo = await fetchMarketData(marketCode);
-        stock.previousClose = marketInfo.previousClose;
-        stock.previousVolume = marketInfo.previousVolume;
-    }
+// 데이터에 들어 있는 시장 목록 (코스피/코스닥 등)
+function getMarkets() {
+    return [...new Set(allStocks.map(stock => stock.market).filter(Boolean))].sort();
 }
 
-async function fetchMarketData(code) {
-    try {
-        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(code)}?range=5d&interval=1d`;
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: { 'Accept': 'application/json' },
-            cache: 'no-store'
-        });
+function renderMarketFilter() {
+    const container = document.getElementById('marketFilter');
+    const markets = [ALL_MARKETS, ...getMarkets()];
 
-        if (!response.ok) {
-            return { previousClose: '미공개', previousVolume: '미공개' };
-        }
-
-        const data = await response.json();
-        const result = data?.chart?.result?.[0];
-        const quote = result?.meta;
-        const prev = quote?.previousClose;
-        const volumeSeries = result?.indicators?.quote?.[0]?.volume;
-        const prevVolume = Array.isArray(volumeSeries) ? volumeSeries[volumeSeries.length - 2] : null;
-
-        return {
-            previousClose: typeof prev === 'number' ? `${Number(prev).toLocaleString('ko-KR')}원` : '미공개',
-            previousVolume: typeof prevVolume === 'number' ? Number(prevVolume).toLocaleString('ko-KR') : '미공개'
-        };
-    } catch (error) {
-        console.warn(`시장 데이터 조회 실패: ${code}`, error);
-        return { previousClose: '미공개', previousVolume: '미공개' };
-    }
+    container.innerHTML = markets.map(market => `
+        <button type="button" class="market-btn${market === selectedMarket ? ' active' : ''}" data-market="${escapeHtml(market)}">
+            ${escapeHtml(market)}
+        </button>
+    `).join('');
 }
 
-function resolveMarketCode(stock) {
-    const marketCode = String(stock?.marketCode || '').trim();
-    if (marketCode && /^\d{6}$/.test(marketCode)) {
-        return `${marketCode}.KS`;
-    }
+function renderStats(data) {
+    const stats = [
+        { label: '전체 상장 스팩', value: `${allStocks.length}개` },
+        ...getMarkets().map(market => ({
+            label: market,
+            value: `${allStocks.filter(stock => stock.market === market).length}개`
+        })),
+        { label: '시세 기준일', value: data.baseDate || '-' }
+    ];
 
-    const rawCode = String(stock?.code || '').trim();
-    if (rawCode.includes('.')) {
-        return rawCode.toUpperCase();
-    }
-
-    if (/^\d{6}$/.test(rawCode)) {
-        return `${rawCode}.KS`;
-    }
-
-    return null;
+    document.getElementById('statsSection').innerHTML = stats.map(stat => `
+        <div class="stat-card">
+            <div class="stat-number">${escapeHtml(stat.value)}</div>
+            <div class="stat-label">${escapeHtml(stat.label)}</div>
+        </div>
+    `).join('');
 }
 
-// 주식 카드 렌더링
-function renderStocks() {
+function renderUpdatedAt(data) {
+    if (!data.updatedAt) {
+        return;
+    }
+    const updatedAt = new Date(data.updatedAt).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    document.getElementById('updatedAt').textContent = `마지막 갱신: ${updatedAt} (KST)`;
+}
+
+// 검색·시장 필터·정렬 적용
+function applyFilters() {
+    const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+    const [sortKey, sortOrder] = document.getElementById('sortSelect').value.split('-');
+
+    const stocks = allStocks
+        .filter(stock => selectedMarket === ALL_MARKETS || stock.market === selectedMarket)
+        .filter(stock =>
+            !keyword ||
+            stock.name.toLowerCase().includes(keyword) ||
+            stock.code.toLowerCase().includes(keyword)
+        )
+        .sort((a, b) => compareStocks(a, b, sortKey, sortOrder));
+
+    renderStocks(stocks);
+}
+
+// 값이 없는 종목은 정렬 방향과 관계없이 맨 뒤로 보낸다.
+function compareStocks(a, b, key, order) {
+    const left = a[key];
+    const right = b[key];
+    if (left == null && right == null) return 0;
+    if (left == null) return 1;
+    if (right == null) return -1;
+
+    const result = typeof left === 'number'
+        ? left - right
+        : String(left).localeCompare(String(right), 'ko');
+    return order === 'desc' ? -result : result;
+}
+
+// 종목 카드 렌더링
+function renderStocks(stocks) {
     const container = document.getElementById('stocksContainer');
-    const noResults = document.getElementById('noResults');
+    document.getElementById('resultSummary').textContent = `${stocks.length}개 종목`;
 
-    if (filteredStocks.length === 0) {
+    if (stocks.length === 0) {
         container.innerHTML = '';
-        noResults.style.display = 'block';
+        showStatus('검색 결과가 없습니다.');
         return;
     }
 
-    noResults.style.display = 'none';
-    container.innerHTML = filteredStocks.map(stock => `
+    hideStatus();
+    container.innerHTML = stocks.map(stock => `
         <div class="stock-card">
             <div class="stock-header">
-                <div>
-                    <div class="stock-name">${stock.name}</div>
-                    <span class="stock-code">${stock.code}</span>
-                </div>
+                <div class="stock-name">${escapeHtml(stock.name)}</div>
+                <span class="stock-code">${escapeHtml(stock.code)}</span>
+                <span class="market-badge">${escapeHtml(stock.market)}</span>
             </div>
 
             <div class="stock-info">
                 <div class="info-item">
-                    <div class="info-label">업종</div>
-                    <div class="info-value">${stock.sector || '미분류'}</div>
+                    <div class="info-label">상장일</div>
+                    <div class="info-value">${escapeHtml(stock.listingDate || '-')}</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">상장일자</div>
-                    <div class="info-value">${stock.listingDate || '미공개'}</div>
+                    <div class="info-label">종가${stock.priceDate ? ` (${escapeHtml(stock.priceDate.slice(5))})` : ''}</div>
+                    <div class="info-value">${formatPrice(stock.close)}</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">종가(직전거래일)</div>
-                    <div class="info-value">${stock.previousClose || '미공개'}</div>
+                    <div class="info-label">전일 대비</div>
+                    <div class="info-value ${changeClass(stock.change)}">${formatChange(stock)}</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">거래량(직전거래일)</div>
-                    <div class="info-value">${stock.previousVolume || '미공개'}</div>
+                    <div class="info-label">거래량</div>
+                    <div class="info-value">${formatNumber(stock.volume)}</div>
                 </div>
             </div>
 
-            <div class="stock-links" style="margin-top: 15px;">
-                ${stock.newsLink ? `<a href="${stock.newsLink}" target="_blank" class="link-btn">뉴스</a>` : ''}
-                ${stock.filingLink ? `<a href="${stock.filingLink}" target="_blank" class="link-btn">공시</a>` : ''}
+            <div class="stock-links">
+                <a href="https://finance.naver.com/item/main.naver?code=${encodeURIComponent(stock.code)}" target="_blank" rel="noopener" class="link-btn">네이버 증권</a>
             </div>
         </div>
     `).join('');
 }
 
-// 검색 필터링
-function filterStocks() {
-    const searchValue = document.getElementById('searchInput').value.toLowerCase();
+function formatNumber(value) {
+    return typeof value === 'number' ? value.toLocaleString('ko-KR') : '-';
+}
 
-    filteredStocks = allStocks.filter(stock => {
-        const matchesSearch =
-            (stock.name && stock.name.toLowerCase().includes(searchValue)) ||
-            (stock.code && stock.code.toLowerCase().includes(searchValue)) ||
-            (stock.sector && stock.sector.toLowerCase().includes(searchValue));
+function formatPrice(value) {
+    return typeof value === 'number' ? `${value.toLocaleString('ko-KR')}원` : '-';
+}
 
-        return matchesSearch;
+function formatChange(stock) {
+    if (typeof stock.change !== 'number') {
+        return '-';
+    }
+    const arrow = stock.change > 0 ? '▲' : stock.change < 0 ? '▼' : '';
+    const rate = typeof stock.changeRate === 'number' ? ` (${stock.changeRate > 0 ? '+' : ''}${stock.changeRate.toFixed(2)}%)` : '';
+    return `${arrow}${Math.abs(stock.change).toLocaleString('ko-KR')}${rate}`;
+}
+
+function changeClass(change) {
+    if (typeof change !== 'number' || change === 0) return '';
+    return change > 0 ? 'up' : 'down';
+}
+
+function showStatus(message) {
+    const status = document.getElementById('statusMessage');
+    status.textContent = message;
+    status.hidden = false;
+}
+
+function hideStatus() {
+    document.getElementById('statusMessage').hidden = true;
+}
+
+function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[char]);
+}
+
+// 이벤트 연결
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('sortSelect').addEventListener('change', applyFilters);
+    document.getElementById('marketFilter').addEventListener('click', event => {
+        const button = event.target.closest('.market-btn');
+        if (!button) return;
+        selectedMarket = button.dataset.market;
+        renderMarketFilter();
+        applyFilters();
     });
-
-    renderStocks();
-    updateStats();
-}
-
-// 통계 업데이트
-function updateStats() {
-    const total = allStocks.length;
-    document.getElementById('totalCount').textContent = total;
-    document.getElementById('listedCount').textContent = total;
-}
-
-// 페이지 로드 시 실행
-window.addEventListener('DOMContentLoaded', loadStocks);
+    loadStocks();
+});

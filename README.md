@@ -1,98 +1,82 @@
-# SpacToken - 국내 SPAC 관련주 정보 플랫폼
+# SpacToken - 국내 상장 스팩 전 종목 조회
 
-국내 SPAC(기업인수목적회사) 관련주를 한곳에서 정리하고 추적할 수 있는 정적 웹사이트입니다.
+코스피·코스닥에 상장된 스팩(SPAC, 기업인수목적회사) 전 종목의 상장일, 종가, 전일 대비, 거래량을 보여주는 정적 웹사이트입니다.
 
-## 🎯 주요 기능
+종목 목록은 사람이 직접 입력하지 않습니다. 한국거래소 KIND의 상장법인목록에서 매일 자동으로 가져오므로, 새로 상장한 스팩은 추가되고 합병·상장폐지된 스팩은 빠집니다.
 
-- **실시간 검색**: 회사명, 종목코드로 빠른 검색
-- **상태별 필터링**: 상장 / 상장예정 / 검토중 분류
-- **통계 대시보드**: 전체, 상장, 예정 기업 수 한눈에 확인
-- **상세 정보**: 각 기업의 기본정보, 공시, 뉴스 링크 제공
-- **반응형 디자인**: 모바일, 태블릿, 데스크톱 모두 최적화
-- **모던 UI**: 다크모드 그라디언트 디자인
+## 주요 기능
 
-## 📁 폴더 구조
+- 종목명·종목코드 검색
+- 시장(코스피/코스닥) 필터. 필터 버튼은 데이터에 있는 시장을 기준으로 자동 생성됩니다.
+- 상장일·거래량·등락률·종가·종목명 정렬
+- 시세 기준일과 마지막 갱신 시각 표시
+
+## 구조
 
 ```
 spactoken/
-├── index.html          # 메인 HTML 페이지
-├── styles.css          # 모던 디자인 스타일
-├── script.js           # 필터링, 검색 로직
+├── index.html                      # 메인 페이지
+├── styles.css                      # 스타일
+├── script.js                       # 검색·필터·정렬·렌더링
 ├── data/
-│   └── spac-stocks.json  # SPAC 기업 데이터
-└── README.md           # 문서
+│   └── spac-stocks.json            # 자동 생성 데이터 (직접 수정하지 않음)
+├── scripts/
+│   └── update_spac_data.py         # 데이터 수집 스크립트
+└── .github/workflows/
+    └── update-data.yml             # 평일 장 마감 후 자동 갱신
 ```
 
-## 🚀 사용 방법
+## 데이터 수집 방식
 
-### 로컬에서 실행
+| 항목 | 출처 |
+|------|------|
+| 종목 목록 (종목명, 코드, 시장, 상장일) | [KIND 상장법인목록](https://kind.krx.co.kr/corpgeneral/corpList.do?method=loadInitPage)에서 회사명에 `스팩` 또는 `기업인수목적`이 들어간 종목 |
+| 종가, 전일 대비, 거래량 | 네이버 증권 일봉 차트 |
+
+두 곳 모두 브라우저에서 직접 호출할 수 없기 때문에(CORS), GitHub Actions가 서버에서 수집해 `data/spac-stocks.json`으로 저장하고 커밋합니다.
+
+- 실행 시각: 평일 17:00 KST (GitHub Actions 탭에서 **Run workflow**로 수동 실행 가능)
+- 목록을 하나도 못 받았거나 시세 조회가 절반 넘게 실패하면 기존 데이터를 그대로 둡니다.
+- 내용이 바뀌지 않았으면 커밋하지 않습니다.
+
+## 로컬에서 실행
 
 ```bash
-# 저장소 클론
-git clone https://github.com/ryun3355/spactoken.git
-cd spactoken
+# 데이터 갱신 (Python 3 표준 라이브러리만 사용)
+python3 scripts/update_spac_data.py
 
-# 간단한 HTTP 서버 실행 (Python)
-python -m http.server 8000
-
-# 또는 Node.js의 http-server 사용
-npx http-server
+# 사이트 확인
+python3 -m http.server 8000
+# → http://localhost:8000
 ```
 
-그 후 `http://localhost:8000` 접속
-
-### GitHub Pages로 배포
-
-1. Repository Settings → Pages
-2. Source를 `main` branch 선택
-3. `https://ryun3355.github.io/spactoken/` 에서 확인
-
-## 📊 데이터 구조
-
-`data/spac-stocks.json` 예시:
+## 데이터 형식
 
 ```json
-[
-  {
-    "name": "한국프로로지스SPAC",
-    "code": "KPRO",
-    "status": "상장",
-    "sector": "부동산/물류",
-    "description": "국내 물류 부동산 전문 기업",
-    "announcementDate": "2023-06-15",
-    "mainShareholder": "프로로지스",
-    "newsLink": "https://example.com/news",
-    "filingLink": "https://example.com/filing"
-  }
-]
+{
+  "updatedAt": "2026-10-23T17:00:00+09:00",
+  "baseDate": "2026-10-23",
+  "count": 68,
+  "stocks": [
+    {
+      "name": "KB제34호스팩",
+      "code": "0209J0",
+      "market": "코스닥",
+      "listingDate": "2026-09-22",
+      "priceDate": "2026-10-23",
+      "close": 1900,
+      "change": 1,
+      "changeRate": 0.05,
+      "volume": 43089
+    }
+  ]
+}
 ```
 
-## 🎨 커스터마이징
+## 배포
 
-### 데이터 추가
-1. `data/spac-stocks.json`에 새 기업 정보 추가
-2. 자동으로 사이트에 반영됨
+GitHub Pages(`main` 브랜치 루트)로 배포하며, 커스텀 도메인은 `CNAME`에 있습니다.
 
-### 디자인 변경
-- `styles.css`에서 색상, 레이아웃 조정
-- 그라디언트 색상 변경: `#667eea`, `#764ba2`
-
-### 기능 추가
-- `script.js`에 새로운 필터링 로직 추가 가능
-- 정렬, 즐겨찾기 등 기능 확장 가능
-
-## 📝 향후 계획
-
-- [ ] 실시간 주가 데이터 연동
-- [ ] 사용자 댓글 및 토론 기능
-- [ ] CSV 데이터 내보내기
-- [ ] API 서버 구축
-- [ ] 앱 버전 개발
-
-## ✨ 라이선스
+## 라이선스
 
 MIT License
-
-## 📧 문의
-
-issue 또는 PR로 피드백 주세요!
