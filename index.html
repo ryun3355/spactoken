@@ -6,7 +6,7 @@
     <title>SpacToken - 국내 상장 스팩 전 종목</title>
     <meta name="description" content="코스피·코스닥에 상장된 스팩(SPAC) 전 종목의 상장일, 종가, 거래량을 한눈에 확인하세요.">
     <!-- script.js·styles.css를 수정하면 ?v= 값도 함께 바꾼다 (브라우저 캐시 갱신용) -->
-    <link rel="stylesheet" href="styles.css?v=20261023">
+    <link rel="stylesheet" href="styles.css?v=20261023-2">
 </head>
 <body>
     <div class="container">
@@ -17,6 +17,35 @@
                 <p class="subtitle">코스피·코스닥 상장 스팩 전 종목</p>
             </div>
         </header>
+
+        <!-- 등락률 상위 종목 차트 -->
+        <section id="moversSection" class="movers-section" aria-labelledby="moversTitle" hidden>
+            <figure class="movers-card">
+                <div class="movers-head">
+                    <div>
+                        <h2 id="moversTitle" class="movers-title"></h2>
+                        <p id="moversCaption" class="movers-caption"></p>
+                    </div>
+                    <div class="movers-tools">
+                        <div id="moversLegend" class="movers-legend" aria-hidden="true">
+                            <span><i class="swatch up"></i>상승</span>
+                            <span><i class="swatch down"></i>하락</span>
+                        </div>
+                        <button type="button" id="moversTableToggle" class="table-toggle" aria-pressed="false">표로 보기</button>
+                    </div>
+                </div>
+                <div id="moversChart" class="movers-chart" role="list">
+                    <!-- JavaScript로 동적 생성 -->
+                </div>
+                <table id="moversTable" class="movers-table" hidden>
+                    <thead>
+                        <tr><th scope="col">종목명</th><th scope="col">전일 대비</th><th scope="col">종가</th><th scope="col">거래량</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="moversTooltip" class="chart-tooltip" role="tooltip" hidden></div>
+            </figure>
+        </section>
 
         <!-- 검색 섹션 -->
         <section class="search-section">
@@ -76,6 +105,6 @@
         </footer>
     </div>
 
-    <script src="script.js?v=20261023"></script>
+    <script src="script.js?v=20261023-2"></script>
 </body>
 </html>
