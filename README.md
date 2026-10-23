@@ -77,6 +77,8 @@ python3 -m http.server 8000
 
 GitHub Pages(`main` 브랜치 루트)로 배포하며, 커스텀 도메인은 `CNAME`에 있습니다.
 
+`script.js`나 `styles.css`를 수정하면 `index.html`에서 두 파일을 불러오는 주소의 `?v=` 값도 바꿔 주세요. GitHub Pages는 파일을 브라우저에 10분간 캐시하기 때문에, 값을 바꾸지 않으면 새 HTML과 예전 JS가 섞여 화면이 깨질 수 있습니다.
+
 ## 라이선스
 
 MIT License
